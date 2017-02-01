@@ -14,12 +14,25 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var cityText: UITextField!
 
+    @IBOutlet weak var image: UIImageView!
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
-            }
+        let service = WeatherRequestService()
+        service.getImageWithSuccessBlock { (result: Data) in
+            
+            self.image.image = UIImage(data:result)!
+        }
+        
+        
+        
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
 
+        
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
@@ -49,5 +62,6 @@ class ViewController: UIViewController {
         }
 
     }
+
 
 
