@@ -7,72 +7,27 @@
 //
 
 import UIKit
+import  RxCocoa
+import  RxSwift
 
 class WeatherRequestService: NSObject {
     
-    private let url = "http://api.openweathermap.org/data/2.5/weather?appid=6dd4e82d58639fe3edf0e4cbecdafdc5"
+    private let url = "https://api.apixu.com/v1/search.json?key=17f9368288dc487d91f173516182502"
     private let imageURL = "http://www.dnepr-333.dp.ua/favicon.png"
     
-    
-    
-    func getWeatherByCity(cityName:String, successBlock:@escaping (_ result:String) -> ())
-    {
-        let str : String = "&q="
-        let  fullUrlString = url + str + cityName
-        let request = URL(string: fullUrlString)!
-        URLSession.shared.dataTask(with: request) { (data,response, error) in
-        
-            if error != nil
-            {
-                print(error!)
-            }else
-            {
-                do
-                {
-                
-                    let parsedData = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:Any]
-                    let main = parsedData["main"] as! [String:Any]
-                    
-                    
-                    let currentTemperatureF = main["temp"] as! Double
-                    let temp = "\(currentTemperatureF)"
-                    DispatchQueue.main.async {
-                         successBlock(temp)
-                    }
-                   
-                } catch let error as NSError {
-                    print(error)
-                }
-            }
-                
-            }.resume()
-    }
-            
-           
-    func getImageWithSuccessBlock(successBlock:@escaping(_ result : Data) ->())
-    {
-        let urlImage = URL(string:imageURL)!
-        URLSession.shared.downloadTask(with: urlImage) { (url, response, error) in
-            if error != nil
-            {
-                print(error!)
-            }else
-            {
-                do
-                {
-                    let imageData =  NSData(contentsOf: url!)
-                    DispatchQueue.main.async
-                        {
-                            successBlock(imageData as! Data )
-                        }
-                }
-            }
-            
-        }.resume()
 
-        
+            
+    func fetchCitiesBy(name: String) -> Observable<[City]> {
+        let fullUrl = URL(string:"\(url)&q=\(name)")!
+        let urlSession = URLSession.shared
+        return urlSession.rx.data(request:URLRequest(url: fullUrl)).map { data -> [City] in
+            let decoder = JSONDecoder()
+            let cities = try! decoder.decode([City].self, from: data)
+            return cities
+        }.observeOn(MainScheduler.instance)
 
     }
+
             
 }
 

@@ -19,6 +19,11 @@
 		E1601F9B1E426AA9004EBDC1 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1601F9A1E426AA9004EBDC1 /* DetailViewController.swift */; };
 		E16185702042BE5800D98510 /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E161856F2042BE5800D98510 /* Search.storyboard */; };
 		E161857C2042C0B000D98510 /* Detail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E16185712042BE8700D98510 /* Detail.storyboard */; };
+		E161857E2042C54600D98510 /*  SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E161857D2042C54600D98510 /*  SearchViewController.swift */; };
+		E16185802042C94500D98510 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E161857F2042C94500D98510 /* SearchViewModel.swift */; };
+		E16185822043303600D98510 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16185812043303600D98510 /* City.swift */; };
+		E16185842043379200D98510 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16185832043379200D98510 /* Weather.swift */; };
+		E161858620433BD300D98510 /* ForecastWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = E161858520433BD300D98510 /* ForecastWeather.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +57,11 @@
 		E1601F9A1E426AA9004EBDC1 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		E161856F2042BE5800D98510 /* Search.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
 		E16185712042BE8700D98510 /* Detail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Detail.storyboard; path = /Users/Natalia/Documents/Programming/University/spiridonova/IOSLab/SimpleWeatherSwift/SimpleWeatherSwift/PresentationLayer/UserStories/Detail/Detail.storyboard; sourceTree = "<absolute>"; };
+		E161857D2042C54600D98510 /*  SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = " SearchViewController.swift"; sourceTree = "<group>"; };
+		E161857F2042C94500D98510 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		E16185812043303600D98510 /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
+		E16185832043379200D98510 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
+		E161858520433BD300D98510 /* ForecastWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastWeather.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +152,9 @@
 				E16185772042BEFB00D98510 /* List */,
 				E16185762042BEF400D98510 /* Search */,
 				E16185752042BEEE00D98510 /* Detail */,
+				E16185812043303600D98510 /* City.swift */,
+				E16185832043379200D98510 /* Weather.swift */,
+				E161858520433BD300D98510 /* ForecastWeather.swift */,
 			);
 			path = UserStories;
 			sourceTree = "<group>";
@@ -175,6 +188,8 @@
 			isa = PBXGroup;
 			children = (
 				E161856F2042BE5800D98510 /* Search.storyboard */,
+				E161857D2042C54600D98510 /*  SearchViewController.swift */,
+				E161857F2042C94500D98510 /* SearchViewModel.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -425,10 +440,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E161858620433BD300D98510 /* ForecastWeather.swift in Sources */,
+				E16185842043379200D98510 /* Weather.swift in Sources */,
+				E16185802042C94500D98510 /* SearchViewModel.swift in Sources */,
 				E1601F6D1E41FAF7004EBDC1 /* ViewController.swift in Sources */,
+				E161857E2042C54600D98510 /*  SearchViewController.swift in Sources */,
 				E1601F991E41FC77004EBDC1 /* WeatherRequestService.swift in Sources */,
 				E1601F6B1E41FAF7004EBDC1 /* AppDelegate.swift in Sources */,
 				E1601F9B1E426AA9004EBDC1 /* DetailViewController.swift in Sources */,
+				E16185822043303600D98510 /* City.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -582,6 +602,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 253FZ393HL;
 				INFOPLIST_FILE = "$(SRCROOT)/SimpleWeatherSwift/Resources/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.itis.ioslab.SimpleWeatherSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -596,6 +617,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 253FZ393HL;
 				INFOPLIST_FILE = "$(SRCROOT)/SimpleWeatherSwift/Resources/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.itis.ioslab.SimpleWeatherSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";

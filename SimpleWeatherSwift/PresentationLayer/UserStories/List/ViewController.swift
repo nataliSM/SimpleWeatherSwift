@@ -20,11 +20,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let service = WeatherRequestService()
-        service.getImageWithSuccessBlock { (result: Data) in
-            
-            self.image.image = UIImage(data:result)!
-        }
-        
+
         
         
     }
@@ -41,11 +37,7 @@ class ViewController: UIViewController {
     @IBAction func buttonDidClicked(_ sender: UIButton)
     {
        let service = WeatherRequestService()
-       service.getWeatherByCity(cityName: cityText.text!) { (result: String) in
-        
-               self.resultWeather = result
-                self .performSegue(withIdentifier: "segue", sender: Any?.self)
-        }
+      
     }
    
 
