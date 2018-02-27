@@ -19,6 +19,9 @@ class ListViewController: UIViewController {
         tableView.tableFooterView = UIView(frame: .zero)
         tableView.register(UINib.init(nibName: String(describing: CurrentForecastCell.self), bundle: .main), forCellReuseIdentifier: CurrentForecastCell.reuseIdentifier())
         bind()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
         viewModel.input.loadWeatherData()
     }
     

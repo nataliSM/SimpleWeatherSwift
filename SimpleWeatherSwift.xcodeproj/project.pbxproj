@@ -67,7 +67,7 @@
 		E1601F981E41FC77004EBDC1 /* WeatherRequestService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherRequestService.swift; sourceTree = "<group>"; };
 		E1601F9A1E426AA9004EBDC1 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		E161856F2042BE5800D98510 /* Search.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
-		E16185712042BE8700D98510 /* Detail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Detail.storyboard; path = /Users/acacuce/Documents/Programming/Playground/SimpleWeatherSwift/SimpleWeatherSwift/PresentationLayer/UserStories/Detail/Detail.storyboard; sourceTree = "<absolute>"; };
+		E16185712042BE8700D98510 /* Detail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Detail.storyboard; path = /Users/Natalia/Documents/Programming/University/spiridonova/IOSLab/SimpleWeatherSwift/SimpleWeatherSwift/PresentationLayer/UserStories/Detail/Detail.storyboard; sourceTree = "<absolute>"; };
 		E161857D2042C54600D98510 /*  SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = " SearchViewController.swift"; sourceTree = "<group>"; };
 		E161857F2042C94500D98510 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		E16185812043303600D98510 /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };

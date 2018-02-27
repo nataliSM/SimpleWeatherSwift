@@ -10,16 +10,18 @@ import UIKit
 import RxCocoa
 import RxSwift
 
-class SearchViewController:UIViewController, UISearchBarDelegate, UISearchDisplayDelegate {
+class SearchViewController:UIViewController, UISearchControllerDelegate, UITableViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     var cities: Array<City> = []
-    let viewModel = SearchViewModel()
+    let viewModel: SearchViewModelType = SearchViewModel()
     let disposeBag = DisposeBag()
     let searchController = UISearchController(searchResultsController: nil)
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchController.delegate = self
+        tableView.delegate = self
         tableView.tableFooterView = UIView(frame: .zero)
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search Cities"
@@ -29,7 +31,7 @@ class SearchViewController:UIViewController, UISearchBarDelegate, UISearchDispla
     }
 
     private func bind() {
-        self.viewModel.cities.asObservable()
+        self.viewModel.output.cities.asObservable()
             .bind(to: tableView.rx.items(cellIdentifier: "CityCell")) {
             (index, repository: City, cell) in
             cell.textLabel?.text = repository.name
@@ -39,8 +41,18 @@ class SearchViewController:UIViewController, UISearchBarDelegate, UISearchDispla
             .throttle(0.5, scheduler: MainScheduler.instance)
             .distinctUntilChanged()
             .subscribe(onNext: { text in
-            self.viewModel.fetchCities(name: text)
+            self.viewModel.input.fetchCities(name: text)
         }).disposed(by: disposeBag)
+    }
+
+    func willDismissSearchController(_ searchController: UISearchController){
+        self.viewModel.output.cities.value = []
+        self.tableView.reloadData()
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        viewModel.input.saveCity(indexPath: indexPath)
+        self.navigationController?.popViewController(animated: true)
     }
 }
 
