@@ -15,18 +15,25 @@ class ListViewController: UIViewController {
     var viewModel: ListViewModelType = ListViewModel() 
     let disposeBag = DisposeBag()
     override func viewDidLoad() {
+        tableView.delegate = self
+        tableView.tableFooterView = UIView(frame: .zero)
+        tableView.register(UINib.init(nibName: String(describing: CurrentForecastCell.self), bundle: .main), forCellReuseIdentifier: CurrentForecastCell.reuseIdentifier())
         bind()
         viewModel.input.loadWeatherData()
     }
     
-    
     private func bind() {
         viewModel.output.weaters.asObservable()
-            .bind(to: tableView.rx.items(cellIdentifier: "WeatherCell")) {
+            .bind(to: tableView.rx.items(cellIdentifier: CurrentForecastCell.reuseIdentifier(), cellType: CurrentForecastCell.self)) {
                 (index, weather: Weather, cell) in
-                cell.textLabel?.text = weather.city.name
-                cell.detailTextLabel?.text = "\(weather.curentForecast.temp)"
+                cell.configure(cityName: weather.city.name, temperature: weather.curentForecast.temp, imageLink: nil)
             }
             .disposed(by: disposeBag)
+    }
+}
+
+extension ListViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 65
     }
 }

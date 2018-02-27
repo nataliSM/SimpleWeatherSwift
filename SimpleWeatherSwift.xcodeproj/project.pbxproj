@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		0579BA6820444F780011BF2C /* CityEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0579BA6720444F780011BF2C /* CityEntity.swift */; };
+		0579BA6B204534A30011BF2C /* CurrentForecastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0579BA69204534A30011BF2C /* CurrentForecastCell.swift */; };
+		0579BA6C204534A30011BF2C /* CurrentForecastCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0579BA6A204534A30011BF2C /* CurrentForecastCell.xib */; };
+		0579BA6E2045389E0011BF2C /* 113.png in Resources */ = {isa = PBXBuildFile; fileRef = 0579BA6D2045389E0011BF2C /* 113.png */; };
 		057F66CE2044358A00B11339 /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057F66CD2044358A00B11339 /* ListViewModel.swift */; };
 		63807BFA97568A462E2A0D18 /* Pods_SimpleWeatherSwiftTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE0C56308C2FFD2D210583DF /* Pods_SimpleWeatherSwiftTests.framework */; };
 		ABAED7D7BC63D1A3E3529F5D /* Pods_SimpleWeatherSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EFF5EB95A8AD848736F2957 /* Pods_SimpleWeatherSwift.framework */; };
@@ -41,6 +44,9 @@
 /* Begin PBXFileReference section */
 		0579BA61204447950011BF2C /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		0579BA6720444F780011BF2C /* CityEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityEntity.swift; sourceTree = "<group>"; };
+		0579BA69204534A30011BF2C /* CurrentForecastCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentForecastCell.swift; sourceTree = "<group>"; };
+		0579BA6A204534A30011BF2C /* CurrentForecastCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CurrentForecastCell.xib; sourceTree = "<group>"; };
+		0579BA6D2045389E0011BF2C /* 113.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 113.png; sourceTree = "<group>"; };
 		057F66CD2044358A00B11339 /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
 		3EFF5EB95A8AD848736F2957 /* Pods_SimpleWeatherSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SimpleWeatherSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D658396E8A3CA3FEF248391 /* Pods-SimpleWeatherSwiftTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleWeatherSwiftTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SimpleWeatherSwiftTests/Pods-SimpleWeatherSwiftTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -214,6 +220,9 @@
 			children = (
 				E1601F6C1E41FAF7004EBDC1 /* ListViewController.swift */,
 				057F66CD2044358A00B11339 /* ListViewModel.swift */,
+				0579BA6D2045389E0011BF2C /* 113.png */,
+				0579BA69204534A30011BF2C /* CurrentForecastCell.swift */,
+				0579BA6A204534A30011BF2C /* CurrentForecastCell.xib */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -326,11 +335,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0579BA6C204534A30011BF2C /* CurrentForecastCell.xib in Resources */,
 				E1601F751E41FAF7004EBDC1 /* LaunchScreen.storyboard in Resources */,
 				E1601F721E41FAF7004EBDC1 /* Assets.xcassets in Resources */,
 				E16185702042BE5800D98510 /* Search.storyboard in Resources */,
 				E161857C2042C0B000D98510 /* Detail.storyboard in Resources */,
 				E1601F701E41FAF7004EBDC1 /* Main.storyboard in Resources */,
+				0579BA6E2045389E0011BF2C /* 113.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -462,6 +473,7 @@
 			files = (
 				057F66CE2044358A00B11339 /* ListViewModel.swift in Sources */,
 				E161858620433BD300D98510 /* ForecastWeather.swift in Sources */,
+				0579BA6B204534A30011BF2C /* CurrentForecastCell.swift in Sources */,
 				E16185842043379200D98510 /* Weather.swift in Sources */,
 				E16185802042C94500D98510 /* SearchViewModel.swift in Sources */,
 				0579BA6820444F780011BF2C /* CityEntity.swift in Sources */,
