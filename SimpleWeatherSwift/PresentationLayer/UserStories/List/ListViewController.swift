@@ -16,6 +16,9 @@ class ListViewController: UIViewController {
     let disposeBag = DisposeBag()
     override func viewDidLoad() {
         bind()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
         viewModel.input.loadWeatherData()
     }
     

@@ -51,7 +51,9 @@ class WeatherRequestService: NSObject {
     }
     
     func fetchCityWeather(_ city: City) -> Observable<Weather> {
-        let fullUrl = URL(string:"\(rootPath)\(currentWeatherPath)?\(keyVariable)&q=\(city.name)")!
+        let name = city.name.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)
+        let fullUrlString = "\(rootPath)\(currentWeatherPath)?\(keyVariable)&q=\(name ?? "")"
+        let fullUrl = URL(string: fullUrlString)!
         let urlSession = URLSession.shared
         return urlSession.rx.data(request:URLRequest(url: fullUrl))
             .map { data -> Weather in
