@@ -7,72 +7,76 @@
 //
 
 import UIKit
+import  RxCocoa
+import  RxSwift
+import RealmSwift
 
 class WeatherRequestService: NSObject {
     
-    private let url = "http://api.openweathermap.org/data/2.5/weather?appid=6dd4e82d58639fe3edf0e4cbecdafdc5"
-    private let imageURL = "http://www.dnepr-333.dp.ua/favicon.png"
+    private let rootPath = "https://api.apixu.com/v1/" 
+    private let keyVariable = "key=17f9368288dc487d91f173516182502"
+    private let searchPath = "search.json"
+    private let currentWeatherPath = "current.json"
+
     
-    
-    
-    func getWeatherByCity(cityName:String, successBlock:@escaping (_ result:String) -> ())
-    {
-        let str : String = "&q="
-        let  fullUrlString = url + str + cityName
-        let request = URL(string: fullUrlString)!
-        URLSession.shared.dataTask(with: request) { (data,response, error) in
+    func saveCity(_ city: City) {
+        let cityEntity = CityEntity()
+        cityEntity.name = city.name
+        cityEntity.country = city.country
+        cityEntity.region = city.region
         
-            if error != nil
-            {
-                print(error!)
-            }else
-            {
-                do
-                {
-                
-                    let parsedData = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:Any]
-                    let main = parsedData["main"] as! [String:Any]
-                    
-                    
-                    let currentTemperatureF = main["temp"] as! Double
-                    let temp = "\(currentTemperatureF)"
-                    DispatchQueue.main.async {
-                         successBlock(temp)
-                    }
-                   
-                } catch let error as NSError {
-                    print(error)
-                }
+        let realm = try! Realm()
+        
+        try! realm.write {
+            realm.add(cityEntity)
+        }
+    }
+    
+    func fetchSavedCities() -> Observable<[City]> {
+        return Observable.create { (subscriber) in
+            do {
+                let realm = try Realm()
+                let cities = Array(realm.objects(CityEntity.self)).map({ (entry) -> City in
+                    return City(name: entry.name, region: entry.region, country: entry.country)
+                })
+                subscriber.onNext(cities)
+                subscriber.onCompleted()
+            } catch (let error) {
+                subscriber.onError(error)
+                subscriber.onCompleted()
             }
-                
-            }.resume()
+            return Disposables.create()
+            
+        }.observeOn(MainScheduler.instance)
+    }
+    
+    func fetchCityWeather(_ city: City) -> Observable<Weather> {
+        let name = city.name.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)
+        let fullUrlString = "\(rootPath)\(currentWeatherPath)?\(keyVariable)&q=\(name ?? "")"
+        let fullUrl = URL(string: fullUrlString)!
+        let urlSession = URLSession.shared
+        return urlSession.rx.data(request:URLRequest(url: fullUrl))
+            .map { data -> Weather in
+                let decoder = JSONDecoder()
+                let weather = try! decoder.decode(Weather.self, from: data)
+                return weather
+            }
+            .observeOn(MainScheduler.instance)
     }
             
-           
-    func getImageWithSuccessBlock(successBlock:@escaping(_ result : Data) ->())
-    {
-        let urlImage = URL(string:imageURL)!
-        URLSession.shared.downloadTask(with: urlImage) { (url, response, error) in
-            if error != nil
-            {
-                print(error!)
-            }else
-            {
-                do
-                {
-                    let imageData =  NSData(contentsOf: url!)
-                    DispatchQueue.main.async
-                        {
-                            successBlock(imageData as! Data )
-                        }
-                }
+    func fetchCitiesBy(name: String) -> Observable<[City]> {
+        let fullUrl = URL(string:"\(rootPath)\(searchPath)?\(keyVariable)&q=\(name)")!
+        let urlSession = URLSession.shared
+        return urlSession.rx.data(request:URLRequest(url: fullUrl))
+            .map { data -> [City] in
+                let decoder = JSONDecoder()
+                let cities = try! decoder.decode([City].self, from: data)
+                return cities
             }
-            
-        }.resume()
-
-        
+            .observeOn(MainScheduler.instance)
 
     }
+
             
 }
 
